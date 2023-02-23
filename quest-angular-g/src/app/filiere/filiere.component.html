@@ -1,0 +1,76 @@
+<div class="container">
+
+  <div class="card">
+    <h3 class="card-header">Filières</h3>
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Identifiant</th>
+            <th>Version</th>
+            <th>Libele</th>
+            <th>Date de début</th>
+            <th>Date de fin</th>
+            <th>Formateur</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let filiere of findAll()">
+            <td> {{filiere.id}} </td>
+            <td> {{filiere.version}} </td>
+            <td> {{filiere.libelle}} </td>
+            <td> {{filiere.debut | date: "dd/MM/yyy"}} </td>
+            <td> {{filiere.fin | date: "dd/MM/yyy"}} </td>
+            <td> {{filiere.formateur ? filiere.formateur.id + ' - ' + filiere.formateur.nom + ' ' + filiere.formateur.prenom : "Pas de formateur" }} </td>
+            <td class="text-center">
+              <a class="btn btn-primary" (click)="edit(filiere.id)"><i class="bi bi-pencil-square"></i></a>
+              <a class="btn btn-danger" (click)="remove(filiere.id)"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-body" *ngIf="formFiliere">
+
+        <div class="row">
+          <label for="idInp" class="col-form-label col-auto">Identifiant :</label>
+          <div class="col">
+            <input type="number" name="idInp" id="idInp" class="form-control col" readonly [(ngModel)]="formFiliere.id">
+          </div>
+          <label for="versionInp" class="col-form-label col-auto">Version :</label>
+          <div class="col">
+            <input type="number" name="versionInp" id="versionInp" class="form-control" readonly [(ngModel)]="formFiliere.version">
+          </div>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+          <label for="libeleInp" class="form-label">Libele</label>
+          <input type="text" name="libeleInp" id="libeleInp" class="form-control" [(ngModel)]="formFiliere.libelle">
+        </div>
+
+        <div class="mb-3">
+          <label for="debutInp" class="form-label">Date de début</label>
+          <input type="date" name="debutInp" id="debutInp" class="form-control" [(ngModel)]="formFiliere.debut">
+        </div>
+
+        <div class="mb-3">
+          <label for="finInp" class="form-label">Date de fin</label>
+          <input type="date" name="finInp" id="finInp" class="form-control" [(ngModel)]="formFiliere.fin">
+        </div>
+
+        <div class="mb-3">
+          <label for="finInp" class="form-label">Formateur</label>
+          <select class="form-control" name="formateur" id="formateur" [(ngModel)]="formFormateurId">
+            <option value="">Choisir un formateur</option>
+            <option *ngFor="let f of listFormateurs()" [value]="f.id">{{f.id}} - {{f.nom}} {{f.prenom}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-success" (click)="add()"><i class="bi bi-plus-square"></i></a>
+      <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace"></i></a>
+    </div>
+  </div>
+</div>

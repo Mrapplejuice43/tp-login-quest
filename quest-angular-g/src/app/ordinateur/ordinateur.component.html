@@ -1,0 +1,61 @@
+<div class="container">
+
+  <div class="card">
+    <h3 class="card-header">Filières</h3>
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Identifiant</th>
+            <th>Version</th>
+            <th>Marque</th>
+            <th>Ram</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ordinateur of findAll()">
+            <td> {{ordinateur.id}} </td>
+            <td> {{ordinateur.version}} </td>
+            <td> {{ordinateur.marque}} </td>
+            <td> {{ordinateur.ram}} </td>
+            <td class="text-center">
+              <a class="btn btn-primary" (click)="edit(ordinateur.id)"><i class="bi bi-pencil-square"></i></a>
+              <a class="btn btn-danger" (click)="remove(ordinateur.id)"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-body" *ngIf="formOrdinateur">
+
+        <div class="row">
+          <label for="idInp" class="col-form-label col-auto">Identifiant :</label>
+          <div class="col">
+            <input type="number" name="idInp" id="idInp" class="form-control col" readonly [(ngModel)]="formOrdinateur.id">
+          </div>
+          <label for="versionInp" class="col-form-label col-auto">Version :</label>
+          <div class="col">
+            <input type="number" name="versionInp" id="versionInp" class="form-control" readonly [(ngModel)]="formOrdinateur.version">
+          </div>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+          <label for="marqueInp" class="form-label">Marque</label>
+          <input type="text" name="marqueInp" id="marqueInp" class="form-control" [(ngModel)]="formOrdinateur.marque">
+        </div>
+
+        <div class="mb-3">
+          <label for="ramInp" class="form-label">Ram</label>
+          <input type="number" name="ramInp" id="ramInp" class="form-control" [(ngModel)]="formOrdinateur.ram">
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-success" (click)="add()"><i class="bi bi-plus-square"></i></a>
+      <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace"></i></a>
+    </div>
+  </div>
+</div>
+

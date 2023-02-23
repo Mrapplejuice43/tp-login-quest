@@ -1,0 +1,88 @@
+<div class="container">
+
+  <div class="card">
+    <h3 class="card-header">Formateurs</h3>
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Identifiant</th>
+            <th>Version</th>
+            <th>Civilite</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Externe</th>
+            <th>Années d'expérience</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let formateur of findAll()">
+            <td> {{formateur.id}} </td>
+            <td> {{formateur.version}} </td>
+            <td> {{formateur.civilite}} </td>
+            <td> {{formateur.nom}} </td>
+            <td> {{formateur.prenom}} </td>
+            <td> {{formateur.email}} </td>
+            <td> {{formateur.externe}} </td>
+            <td> {{formateur.experience}} </td>
+            <td class="text-center">
+              <a class="btn btn-primary" (click)="edit(formateur.id)"><i class="bi bi-pencil-square"></i></a>
+              <a class="btn btn-danger" (click)="remove(formateur.id)"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-body" *ngIf="formFormateur">
+
+        <div class="row">
+          <label for="idInp" class="col-form-label col-auto">Identifiant :</label>
+          <div class="col">
+            <input type="number" name="idInp" id="idInp" class="form-control col" readonly [(ngModel)]="formFormateur.id">
+          </div>
+          <label for="versionInp" class="col-form-label col-auto">Version :</label>
+          <div class="col">
+            <input type="number" name="versionInp" id="versionInp" class="form-control" readonly [(ngModel)]="formFormateur.version">
+          </div>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+          <label for="civInp" class="form-label">Civilite</label>
+          <input type="text" name="civInp" id="civInp" class="form-control" [(ngModel)]="formFormateur.civilite">
+        </div>
+
+        <div class="mb-3">
+          <label for="nomInp" class="form-label">Nom</label>
+          <input type="text" name="nomInp" id="nomInp" class="form-control" [(ngModel)]="formFormateur.nom">
+        </div>
+
+        <div class="mb-3">
+          <label for="prenomInp" class="form-label">Prenom</label>
+          <input type="text" name="prenomInp" id="prenomInp" class="form-control" [(ngModel)]="formFormateur.prenom">
+        </div>
+
+        <div class="mb-3">
+          <label for="emailInp" class="form-label">Email</label>
+          <input type="text" name="emailInp" id="emailInp" class="form-control" [(ngModel)]="formFormateur.email">
+        </div>
+
+        <div class="mb-3">
+          <input type="checkbox" name="bdInp" id="bdInp" class="form-check-input" [(ngModel)]="formFormateur.externe">
+          <label for="bdInp" class="form-check-label">Externe</label>
+        </div>
+
+        <div class="mb-3">
+          <label for="etInp" class="form-label">Années d'expérience</label>
+          <input type="number" name="etInp" id="etInp" class="form-control" [(ngModel)]="formFormateur.experience">
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-success" (click)="add()"><i class="bi bi-plus-square"></i></a>
+      <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace"></i></a>
+    </div>
+  </div>
+</div>
+

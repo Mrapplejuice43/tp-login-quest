@@ -1,0 +1,87 @@
+<div class="container">
+
+  <div class="card">
+    <h3 class="card-header">Stagiaires</h3>
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Identifiant</th>
+            <th>Version</th>
+            <th>Civilite</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+            <th>Niveau d'études</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of findAll()">
+            <td> {{s.id}} </td>
+            <td> {{s.version}} </td>
+            <td> {{s.civilite}} </td>
+            <td> {{s.nom}} </td>
+            <td> {{s.prenom}} </td>
+            <td> {{s.email}} </td>
+            <td> {{s.dtNaissance | date: "dd/MM/yyyy"}} </td>
+            <td> {{s.niveauEtude}} </td>
+            <td class="text-center">
+              <a class="btn btn-primary" (click)="edit(s.id)"><i class="bi bi-pencil-square"></i></a>
+              <a class="btn btn-danger" (click)="remove(s.id)"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-body" *ngIf="formStagiaire">
+
+        <div class="row">
+          <label for="idInp" class="col-form-label col-auto">Identifiant :</label>
+          <div class="col">
+            <input type="number" name="idInp" id="idInp" class="form-control col" readonly [(ngModel)]="formStagiaire.id">
+          </div>
+          <label for="versionInp" class="col-form-label col-auto">Version :</label>
+          <div class="col">
+            <input type="number" name="versionInp" id="versionInp" class="form-control" readonly [(ngModel)]="formStagiaire.version">
+          </div>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+          <label for="civInp" class="form-label">Civilite</label>
+          <input type="text" name="civInp" id="civInp" class="form-control" [(ngModel)]="formStagiaire.civilite">
+        </div>
+
+        <div class="mb-3">
+          <label for="nomInp" class="form-label">Nom</label>
+          <input type="text" name="nomInp" id="nomInp" class="form-control" [(ngModel)]="formStagiaire.nom">
+        </div>
+
+        <div class="mb-3">
+          <label for="prenomInp" class="form-label">Prenom</label>
+          <input type="text" name="prenomInp" id="prenomInp" class="form-control" [(ngModel)]="formStagiaire.prenom">
+        </div>
+
+        <div class="mb-3">
+          <label for="emailInp" class="form-label">Email</label>
+          <input type="text" name="emailInp" id="emailInp" class="form-control" [(ngModel)]="formStagiaire.email">
+        </div>
+
+        <div class="mb-3">
+          <label for="bdInp" class="form-label">Date de naissance</label>
+          <input type="text" name="bdInp" id="bdInp" class="form-control" [(ngModel)]="formStagiaire.dtNaissance">
+        </div>
+
+        <div class="mb-3">
+          <label for="etInp" class="form-label">Niveau d'études</label>
+          <input type="text" name="etInp" id="etInp" class="form-control" [(ngModel)]="formStagiaire.niveauEtude">
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-success" (click)="addStagiaire()"><i class="bi bi-plus-square"></i></a>
+      <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace"></i></a>
+    </div>
+  </div>
+</div>

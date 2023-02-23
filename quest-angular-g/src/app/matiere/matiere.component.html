@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="card">
+    <h3 class="card-header">Filières</h3>
+    <div class="card-body">
+      <table class="table table-bordered table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Identifiant</th>
+            <th>Version</th>
+            <th>Libele</th>
+            <th>Id Quest</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let matiere of findAll()">
+            <td> {{matiere.id}} </td>
+            <td> {{matiere.version}} </td>
+            <td> {{matiere.libelle}} </td>
+            <td> {{matiere.quest}} </td>
+            <td class="text-center">
+              <a class="btn btn-primary" (click)="edit(matiere.id)"><i class="bi bi-pencil-square"></i></a>
+              <a class="btn btn-danger" (click)="remove(matiere.id)"><i class="bi bi-trash3"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-body" *ngIf="formMatiere">
+
+        <div class="row">
+          <label for="idInp" class="col-form-label col-auto">Identifiant :</label>
+          <div class="col">
+            <input type="number" name="idInp" id="idInp" class="form-control col" readonly [(ngModel)]="formMatiere.id">
+          </div>
+          <label for="versionInp" class="col-form-label col-auto">Version :</label>
+          <div class="col">
+            <input type="number" name="versionInp" id="versionInp" class="form-control" readonly [(ngModel)]="formMatiere.version">
+          </div>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+          <label for="libeleInp" class="form-label">Libele</label>
+          <input type="text" name="libeleInp" id="libeleInp" class="form-control" [(ngModel)]="formMatiere.libelle">
+        </div>
+
+        <div class="mb-3">
+          <label for="questInp" class="form-label">Id Quest</label>
+          <input type="number" name="questInp" id="questInp" class="form-control" [(ngModel)]="formMatiere.quest">
+        </div>
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-success" (click)="add()"><i class="bi bi-plus-square"></i></a>
+      <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace"></i></a>
+    </div>
+  </div>
+</div>
